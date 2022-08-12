@@ -120,6 +120,7 @@ func loadSettings() (settings SettingsStruct, err error) {
 	defaults["epgSource"] = "PMS"
 	defaults["ffmpeg.options"] = System.FFmpeg.DefaultOptions
 	defaults["vlc.options"] = System.VLC.DefaultOptions
+	defaults["streamlink.options"] = System.Streamlink.DefaultOptions
 	defaults["files"] = dataMap
 	defaults["files.update"] = true
 	defaults["filter"] = make(map[string]interface{})
@@ -170,6 +171,10 @@ func loadSettings() (settings SettingsStruct, err error) {
 		settings.VLCPath = searchFileInOS("cvlc")
 	}
 
+	if len(settings.StreamlinkPath) == 0 {
+		settings.StreamlinkPath = searchFileInOS("cvlc")
+	}
+
 	settings.Version = System.DBVersion
 
 	err = saveSettings(settings)
@@ -181,6 +186,10 @@ func loadSettings() (settings SettingsStruct, err error) {
 
 	if len(Settings.VLCPath) == 0 && Settings.Buffer == "vlc" {
 		showWarning(2021)
+	}
+
+	if len(Settings.StreamlinkPath) == 0 && Settings.Buffer == "streamlink" {
+		showWarning(2022)
 	}
 
 	return

@@ -101,7 +101,7 @@ func updateServerSettings(request RequestStruct) (settings SettingsStruct, err e
 					return
 				}
 
-			case "ffmpeg.path", "vlc.path":
+			case "ffmpeg.path", "vlc.path", "streamlink.path":
 				var path = value.(string)
 				if len(path) > 0 {
 
@@ -168,6 +168,10 @@ func updateServerSettings(request RequestStruct) (settings SettingsStruct, err e
 		Settings.VLCOptions = System.VLC.DefaultOptions
 	}
 
+	if len(Settings.StreamlinkOptions) == 0 {
+		Settings.StreamlinkOptions = System.Streamlink.DefaultOptions
+	}
+
 	switch Settings.Buffer {
 
 	case "ffmpeg":
@@ -181,6 +185,13 @@ func updateServerSettings(request RequestStruct) (settings SettingsStruct, err e
 
 		if len(Settings.VLCPath) == 0 {
 			err = errors.New(getErrMsg(2021))
+			return
+		}
+
+	case "streamlink"
+		
+		if len(Settings.StreamlinkPath) == 0 {
+			err = errors.New(getErrMsg(2022))
 			return
 		}
 

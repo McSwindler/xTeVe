@@ -392,7 +392,8 @@
       "info_false": "No Buffer (Client connects to the streaming server)",
       "info_xteve": "xTeVe connects to the streaming server",
       "info_ffmpeg": "FFmpeg connects to the streaming server",
-      "info_vlc": "VLC connects to the streaming server"
+      "info_vlc": "VLC connects to the streaming server",
+      "info_streamlink": "Streamlink connects to the streaming server"
 
     },
     "udpxy":
@@ -423,6 +424,18 @@
     {
       "title": "VLC / CVLC Options",
       "description": "VLC / CVLC options.<br>Only change if you know what you are doing.<br>Leave blank to set default settings.",
+      "placeholder": "Leave blank to set default settings"
+    },
+    "streamlinkPath":
+    {
+      "title": "Streamlink Binary Path",
+      "description": "Path to Streamlink binary.",
+      "placeholder": "/path/to/streamlink"
+    },
+    "streamlinkOptions":
+    {
+      "title": "Streamlink Options",
+      "description": "Streamlink options.<br>Only change if you know what you are doing.<br>Leave blank to set default settings.",
       "placeholder": "Leave blank to set default settings"
     },
     "bufferSize":

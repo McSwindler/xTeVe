@@ -212,7 +212,7 @@ func bufferingStream(playlistID, streamingURL, channelName string, w http.Respon
 
 		case "xteve":
 			go connectToStreamingServer(streamID, playlistID)
-		case "ffmpeg", "vlc":
+		case "ffmpeg", "vlc", "streamlink":
 			go thirdPartyBuffer(streamID, playlistID)
 
 		default:
@@ -1372,6 +1372,10 @@ func thirdPartyBuffer(streamID int, playlistID string) {
 			path = Settings.VLCPath
 			options = Settings.VLCOptions
 
+		case "streamlink":
+			path = Settings.StreamlinkPath
+			options = Settings.StreamlinkOptions
+
 		default:
 			return
 		}
@@ -1443,6 +1447,19 @@ func thirdPartyBuffer(streamID int, playlistID string) {
 
 					if len(Settings.UserAgent) != 0 {
 						args = append(args, fmt.Sprintf(":http-user-agent=%s", Settings.UserAgent))
+					}
+
+				} else {
+					args = append(args, a)
+				}
+
+			case "STREAMLINK":
+				if a == "[URL]" {
+					a = strings.Replace(a, "[URL]", url, -1)
+					args = append(args, a)
+
+					if len(Settings.UserAgent) != 0 {
+						args = append(args, fmt.Sprintf("--http-header \"User-Agent=%s\"", Settings.UserAgent))
 					}
 
 				} else {
@@ -1645,7 +1662,7 @@ func getTuner(id, playlistType string) (tuner int) {
 	case "-":
 		tuner = Settings.Tuner
 
-	case "xteve", "ffmpeg", "vlc":
+	case "xteve", "ffmpeg", "vlc", "streamlink":
 
 		i, err := strconv.Atoi(getProviderParameter(id, playlistType, "tuner"))
 		if err == nil {

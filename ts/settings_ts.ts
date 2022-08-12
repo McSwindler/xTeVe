@@ -145,6 +145,34 @@ class SettingsCategory {
         setting.appendChild(tdRight)
         break
 
+        case "streamlink.path":
+          var tdLeft = document.createElement("TD")
+          tdLeft.innerHTML = "{{.settings.streamlinkPath.title}}" + ":"
+  
+          var tdRight = document.createElement("TD")
+          var input = content.createInput("text", "streamlink.path", data)
+          input.setAttribute("placeholder", "{{.settings.streamlinkPath.placeholder}}")
+          input.setAttribute("onchange", "javascript: this.className = 'changed'")
+          tdRight.appendChild(input)
+  
+          setting.appendChild(tdLeft)
+          setting.appendChild(tdRight)
+          break
+  
+        case "streamlink.options":
+          var tdLeft = document.createElement("TD")
+          tdLeft.innerHTML = "{{.settings.streamlinkOptions.title}}" + ":"
+  
+          var tdRight = document.createElement("TD")
+          var input = content.createInput("text", "streamlink.options", data)
+          input.setAttribute("placeholder", "{{.settings.streamlinkOptions.placeholder}}")
+          input.setAttribute("onchange", "javascript: this.className = 'changed'")
+          tdRight.appendChild(input)
+  
+          setting.appendChild(tdLeft)
+          setting.appendChild(tdRight)
+          break
+
         // Checkboxen
       case "authentication.web":
         var tdLeft = document.createElement("TD")
@@ -361,8 +389,8 @@ class SettingsCategory {
         tdLeft.innerHTML = "{{.settings.streamBuffering.title}}" + ":"
 
         var tdRight = document.createElement("TD")
-        var text:any[] = ["{{.settings.streamBuffering.info_false}}", "xTeVe: ({{.settings.streamBuffering.info_xteve}})", "FFmpeg: ({{.settings.streamBuffering.info_ffmpeg}})", "VLC: ({{.settings.streamBuffering.info_vlc}})"]
-        var values:any[] = ["-", "xteve", "ffmpeg", "vlc"]
+        var text:any[] = ["{{.settings.streamBuffering.info_false}}", "xTeVe: ({{.settings.streamBuffering.info_xteve}})", "FFmpeg: ({{.settings.streamBuffering.info_ffmpeg}})", "VLC: ({{.settings.streamBuffering.info_vlc}})", "Streamlink: ({{.settings.streamBuffering.info_streamlink}})"]
+        var values:any[] = ["-", "xteve", "ffmpeg", "vlc", "streamlink"]
 
         var select = content.createSelect(text, values, data, settingsKey)
         select.setAttribute("onchange", "javascript: this.className = 'changed'")
@@ -468,6 +496,14 @@ class SettingsCategory {
 
       case "vlc.options":
         text = "{{.settings.vlcOptions.description}}"
+        break
+
+      case "streamlink.path":
+        text = "{{.settings.streamlinkPath.description}}"
+        break
+
+      case "streamlink.options":
+        text = "{{.settings.streamlinkOptions.description}}"
         break
 
       case "epgSource":

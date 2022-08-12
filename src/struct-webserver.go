@@ -34,6 +34,8 @@ type RequestStruct struct {
 		FFmpegPath               *string   `json:"ffmpeg.path,omitempty"`
 		VLCOptions               *string   `json:"vlc.options,omitempty"`
 		VLCPath                  *string   `json:"vlc.path,omitempty"`
+		StreamlinkOptions        *string   `json:"streamlink.options,omitempty"`
+		StreamlinkPath           *string   `json:"streamlink.path,omitempty"`
 		FilesUpdate              *bool     `json:"files.update,omitempty"`
 		TempPath                 *string   `json:"temp.path,omitempty"`
 		Tuner                    *int      `json:"tuner,omitempty"`

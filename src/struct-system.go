@@ -35,6 +35,11 @@ type SystemStruct struct {
 		Path           string
 	}
 
+	Streamlink struct {
+		DefaultOptions string
+		Path           string
+	}
+
 	File struct {
 		Authentication string
 		M3U            string
@@ -271,6 +276,8 @@ type SettingsStruct struct {
 	FFmpegPath        string   `json:"ffmpeg.path"`
 	VLCOptions        string   `json:"vlc.options"`
 	VLCPath           string   `json:"vlc.path"`
+	StreamlinkOptions string   `json:"streamlink.options"`
+	StreamlinkPath    string   `json:"streamlink.path"`
 	FileM3U           []string `json:"file,omitempty"`  // Beim Wizard wird die M3U in ein Slice gespeichert
 	FileXMLTV         []string `json:"xmltv,omitempty"` // Altes Speichersystem der Provider XML Datei Slice (Wird für die Umwandlung auf das neue benötigt)
 

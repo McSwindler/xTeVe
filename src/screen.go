@@ -296,7 +296,7 @@ func getErrMsg(errCode int) (errMsg string) {
 	case 1203:
 		errMsg = fmt.Sprintf("Steaming URL could not be found in any playlist")
 	case 1204:
-		errMsg = fmt.Sprintf("Streaming was stopped by third party transcoder (FFmpeg / VLC)")
+		errMsg = fmt.Sprintf("Streaming was stopped by third party transcoder (FFmpeg / VLC / Streamlink)")
 
 	// Warnings
 	case 2000:
@@ -317,6 +317,8 @@ func getErrMsg(errCode int) (errMsg string) {
 		errMsg = fmt.Sprintf("FFmpeg binary was not found. Check the FFmpeg binary path in the xTeVe settings.")
 	case 2021:
 		errMsg = fmt.Sprintf("VLC binary was not found. Check the VLC path binary in the xTeVe settings.")
+	case 2022:
+		errMsg = fmt.Sprintf("Streamlink binary was not found. Check the Streamlink path binary in the xTeVe settings.")
 
 	case 2099:
 		errMsg = fmt.Sprintf("Updates have been disabled by the developer")
