@@ -188,7 +188,7 @@ func updateServerSettings(request RequestStruct) (settings SettingsStruct, err e
 			return
 		}
 
-	case "streamlink"
+	case "streamlink":
 		
 		if len(Settings.StreamlinkPath) == 0 {
 			err = errors.New(getErrMsg(2022))
