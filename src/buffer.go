@@ -247,8 +247,10 @@ func bufferingStream(playlistID, streamingURL, channelName string, w http.Respon
 					if c, ok := BufferClients.Load(playlistID + stream.MD5); ok {
 
 						var clients = c.(ClientConnection)
-
-						if clients.Error != nil || timeOut > 200 {
+						
+						//TODO add setting to configure timeout
+						if clients.Error != nil || timeOut > 600 {
+							showInfo("Streaming Status:timeout")
 							killClientConnection(streamID, stream.PlaylistID, false)
 							return
 						}
@@ -467,6 +469,10 @@ func killClientConnection(streamID int, playlistID string, force bool) {
 		if stream, ok := playlist.Streams[streamID]; ok {
 
 			if c, ok := BufferClients.Load(playlistID + stream.MD5); ok {
+
+				showInfo("Streaming Status:Keeping stream alive for 5 seconds")
+				//TODO add settings to enable this keep-alive option
+				time.Sleep(time.Duration(5000) * time.Millisecond)
 
 				var clients = c.(ClientConnection)
 				clients.Connection = clients.Connection - 1
